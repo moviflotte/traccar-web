@@ -7,6 +7,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
+import { Capacitor } from '@capacitor/core';
 import store from './store';
 import { LocalizationProvider } from './common/components/LocalizationProvider';
 import ErrorHandler from './common/components/ErrorHandler';
@@ -17,6 +18,7 @@ import NativeInterface from './common/components/NativeInterface';
 import ServerProvider from './ServerProvider';
 import ErrorBoundary from './ErrorBoundary';
 import AppThemeProvider from './AppThemeProvider';
+import Init from './Capacitor';
 
 preloadImages();
 
@@ -43,4 +45,8 @@ root.render(
   </ErrorBoundary>,
 );
 
-serviceWorkerRegistration.register();
+if (!Capacitor.isNativePlatform()) {
+  serviceWorkerRegistration.register();
+} else {
+  Init();
+}

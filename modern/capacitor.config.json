@@ -1,0 +1,11 @@
+{
+  "appId": "org.fleetmap.traccar",
+  "appName": "traccar-cap",
+  "webDir": "build",
+  "server": {
+    "androidScheme": "https"
+  },
+  "ios": {
+    "contentInset": "always"
+  }
+}
