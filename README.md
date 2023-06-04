@@ -8,7 +8,7 @@ Traccar Manager using [Capacitor](https://github.com/ionic-team/capacitor)
 ```
 cd modern
 npm install
-REACT_APP_URL_NAME=demo4.traccar.org && npm run build
+REACT_APP_URL_NAME=YOUR_TRACCAR_SERVER_HOST && npm run build
 npx cap add ios
 npx cap add android
 npx cap copy
