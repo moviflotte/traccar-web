@@ -8,6 +8,7 @@ Traccar Manager using [Capacitor](https://github.com/ionic-team/capacitor)
 ```
 cd modern
 npm install
+npm run build
 npx cap add ios
 npx cap add android
 npx cap copy
