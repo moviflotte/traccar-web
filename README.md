@@ -10,6 +10,7 @@ cd modern
 npm install
 npx cap add ios
 npx cap add android
+npx cap copy
 ```
 Xcode
 ```
