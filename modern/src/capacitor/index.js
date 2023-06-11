@@ -1,4 +1,5 @@
 import { Capacitor, CapacitorHttp } from '@capacitor/core';
+import { Preferences } from '@capacitor/preferences';
 
 export default function Init() {
   if (Capacitor.isNativePlatform()) {
@@ -19,6 +20,12 @@ export default function Init() {
               } : {}),
               ...options,
             });
+            if (response.headers['Set-Cookie']) {
+              await Preferences.set({
+                key: 'cookie',
+                value: response.headers['Set-Cookie'].substring(0, response.headers['Set-Cookie'].indexOf(';')),
+              });
+            }
             return new Response(JSON.stringify(response.data), {
               headers: response.headers,
               status: response.status,
