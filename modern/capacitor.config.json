@@ -1,6 +1,6 @@
 {
-  "appId": "org.fleetmap.traccar",
-  "appName": "traccar-cap",
+  "appId": "com.fleetmap.moviflotte",
+  "appName": "Moviflotte",
   "webDir": "build",
   "server": {
     "androidScheme": "https"
