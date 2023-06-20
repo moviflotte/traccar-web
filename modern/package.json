@@ -52,7 +52,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "copy": "react-scripts build && npx cap copy",
+    "copy": "export REACT_APP_URL_NAME=api.pinme.io && react-scripts build && npx cap copy",
     "lint": "eslint .",
     "lint:fix": "eslint --fix --ext .js ."
   },
