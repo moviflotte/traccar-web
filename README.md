@@ -10,7 +10,7 @@ Uses native web requests and native web sockets.
 ```
 cd modern
 npm install
-REACT_APP_URL_NAME=YOUR_TRACCAR_SERVER_HOST && npm run build
+export REACT_APP_URL_NAME=YOUR_TRACCAR_SERVER_HOST && npm run build
 npx cap add ios
 npx cap add android
 npx cap copy
