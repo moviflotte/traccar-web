@@ -35,7 +35,7 @@ const SocketController = () => {
 
   const connectSocket = () => {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const socket = Capacitor.isNativePlatform() ? capacitorWebSocket() : new WebSocket(`${protocol}//${window.location.host}/api/socket`);
+    const socket = Capacitor.getPlatform() === 'ios' ? capacitorWebSocket() : new WebSocket(`${protocol}//${window.location.host}/api/socket`);
     socketRef.current = socket;
 
     socket.onopen = () => {
