@@ -14,7 +14,7 @@ export default function Init() {
               credentials: 'include',
             },
             ...(options ? {
-              data: options.body.toString(),
+              data: options.body && options.body.toString(),
               headers: options.headers,
             } : {}),
             ...options,
