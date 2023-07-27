@@ -3,6 +3,7 @@ import circle from '@turf/circle';
 
 export const loadImage = (url) => new Promise((imageLoaded) => {
   const image = new Image();
+  image.crossOrigin = 'anonymous';
   image.onload = () => imageLoaded(image);
   image.src = url;
 });

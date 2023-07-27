@@ -22,7 +22,7 @@
     "@turf/circle": "^6.5.0",
     "@turf/turf": "^6.5.0",
     "mapbox-gl": "^1.13.3",
-    "maplibre-gl": "^3.0.1",
+    "maplibre-gl": "3.2.1",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

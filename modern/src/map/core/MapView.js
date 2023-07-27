@@ -35,7 +35,7 @@ const updateReadyValue = (value) => {
   ready = value;
   readyListeners.forEach((listener) => listener(value));
 };
-
+// const imageLoading = [];
 const initMap = async () => {
   if (ready) return;
   if (!map.hasImage('background')) {
@@ -45,8 +45,30 @@ const initMap = async () => {
       });
     });
   }
+  /* map.on('styleimagemissing', (e) => {
+    console.log('missing', e);
+    imageLoading.push(e);
+    // https://library.service24gps.com/iconos.html
+  }); */
   updateReadyValue(true);
 };
+/* const loadingImages = false;
+const checkImages = async () => {
+  if (!loadingImages && imageLoading.length) {
+    loadingImages = true;
+    const e = imageLoading.pop();
+    if (!map.hasImage(e.id)) {
+      // eslint-disable-next-line no-await-in-loop
+      const img = await loadImage(`https://dj8a2t2l05zy6.cloudfront.net/3d_revolvedora.php?grados=${e.id.split('-')[2]}`);
+      if (!map.hasImage(e.id)) {
+        map.addImage(e.id, img);
+      }
+    }
+    loadingImages = false;
+  }
+};
+*/
+// setInterval(checkImages, 1000);
 
 map.addControl(new maplibregl.NavigationControl());
 
