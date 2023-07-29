@@ -8,6 +8,8 @@ import { useAttributePreference, usePreference } from '../../common/util/prefere
 import usePersistedState, { savePersistedState } from '../../common/util/usePersistedState';
 import { mapImages } from './preloadImages';
 import useMapStyles from './useMapStyles';
+import { loadImage } from './mapUtil';
+import getImageUrl from '../3dIcons';
 
 const element = document.createElement('div');
 element.style.width = '100%';
@@ -45,6 +47,16 @@ const initMap = async () => {
       });
     });
   }
+  map.on('styleimagemissing', (e) => {
+    if (!map.hasImage(e.id)) {
+      loadImage(getImageUrl(...e.id.split('-')))
+        .then((img) => {
+          if (!map.hasImage(e.id)) {
+            map.addImage(e.id, img);
+          }
+        });
+    }
+  });
   updateReadyValue(true);
 };
 

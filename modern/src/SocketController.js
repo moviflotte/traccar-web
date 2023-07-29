@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector, connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Snackbar } from '@mui/material';
-import { Capacitor } from '@capacitor/core';
 import { devicesActions, sessionActions } from './store';
 import { useEffectAsync } from './reactHelper';
 import { useTranslation } from './common/components/LocalizationProvider';
@@ -11,7 +10,6 @@ import alarm from './resources/alarm.mp3';
 import { eventsActions } from './store/events';
 import useFeatures from './common/util/useFeatures';
 import { useAttributePreference } from './common/util/preferences';
-import capacitorWebSocket from './capacitor/webSocket';
 
 const logoutCode = 4000;
 
@@ -35,7 +33,7 @@ const SocketController = () => {
 
   const connectSocket = () => {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const socket = Capacitor.getPlatform() === 'ios' ? capacitorWebSocket() : new WebSocket(`${protocol}//${window.location.host}/api/socket`);
+    const socket = new WebSocket(`${protocol}//${window.location.host}/api/socket`);
     socketRef.current = socket;
 
     socket.onopen = () => {

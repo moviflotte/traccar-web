@@ -44,7 +44,8 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
       fixTime: formatTime(position.fixTime, 'seconds', hours12),
       category: mapIconKey(device.category),
       color: showStatus ? position.attributes.color || getStatusColor(device.status) : 'neutral',
-      rotation: position.course,
+      rotation: position.course % 16,
+      baseRotation: Math.floor(position.course / 16) * 16,
       direction: showDirection,
     };
   };
@@ -99,9 +100,10 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
       source: id,
       filter: ['!has', 'point_count'],
       layout: {
-        'icon-image': '{category}-{color}',
+        'icon-image': '{category}-{color}-{baseRotation}',
         'icon-size': iconScale,
         'icon-allow-overlap': true,
+        'icon-rotate': ['get', 'rotation'],
         'text-field': `{${titleField || 'name'}}`,
         'text-allow-overlap': true,
         'text-anchor': 'bottom',
@@ -125,23 +127,6 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
         'text-field': '{point_count_abbreviated}',
         'text-font': findFonts(map),
         'text-size': 14,
-      },
-    });
-    map.addLayer({
-      id: direction,
-      type: 'symbol',
-      source: id,
-      filter: [
-        'all',
-        ['!has', 'point_count'],
-        ['==', 'direction', true],
-      ],
-      layout: {
-        'icon-image': 'direction',
-        'icon-size': iconScale,
-        'icon-allow-overlap': true,
-        'icon-rotate': ['get', 'rotation'],
-        'icon-rotation-alignment': 'map',
       },
     });
 
