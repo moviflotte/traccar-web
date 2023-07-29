@@ -9,6 +9,7 @@ import usePersistedState, { savePersistedState } from '../../common/util/usePers
 import { mapImages } from './preloadImages';
 import useMapStyles from './useMapStyles';
 import { loadImage } from './mapUtil';
+import getImageUrl from '../3dIcons';
 
 const element = document.createElement('div');
 element.style.width = '100%';
@@ -47,16 +48,14 @@ const initMap = async () => {
     });
   }
   map.on('styleimagemissing', (e) => {
-    // console.log('missing', e);
     if (!map.hasImage(e.id)) {
-      loadImage(`https://dj8a2t2l05zy6.cloudfront.net/3d_revolvedora.php?grados=${e.id.split('-')[2]}`)
+      loadImage(getImageUrl(...e.id.split('-')))
         .then((img) => {
           if (!map.hasImage(e.id)) {
             map.addImage(e.id, img);
           }
         });
     }
-    // https://library.service24gps.com/iconos.html
   });
   updateReadyValue(true);
 };
