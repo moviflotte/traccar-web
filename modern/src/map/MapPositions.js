@@ -45,8 +45,8 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
       fixTime: formatTime(position.fixTime, 'seconds', hours12),
       category: mapIconKey(device.category),
       color: showStatus ? position.attributes.color || getStatusColor(device.status) : 'neutral',
-      rotation: position.course % 16,
-      baseRotation: Math.floor(position.course / 16) * 16,
+      rotation: position.course % 22.5,
+      baseRotation: Math.floor(position.course / 22.5) * 22.5,
       direction: showDirection,
     };
   };

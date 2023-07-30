@@ -147,6 +147,7 @@ const Navigation = () => {
         </Route>
 
         <Route path="reports">
+          <Route path="combined" element={<TripReportPage />} />
           <Route path="chart" element={<ChartReportPage />} />
           <Route path="event" element={<EventReportPage />} />
           <Route path="route" element={<RouteReportPage />} />

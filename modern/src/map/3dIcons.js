@@ -15,5 +15,5 @@ https://library.service24gps.com/iconos.html
 const baseUrl = 'https://dj8a2t2l05zy6.cloudfront.net';
 
 export default function getImageUrl(icon, color, rotation) {
-  return `${baseUrl}/${icon}.php?c=${palette().colors[color].replace('#', '')}&grados=${rotation}`;
+  return `${baseUrl}/${icon}.php?c=${palette().colors[color] && palette().colors[color].replace('#', '')}&grados=${rotation}`;
 }
