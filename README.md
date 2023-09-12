@@ -13,7 +13,6 @@ npm install
 export REACT_APP_URL_NAME=YOUR_TRACCAR_SERVER_HOST && npm run build
 npx cap add ios
 npx cap add android
-npx cap copy
 ```
 Xcode
 ```
