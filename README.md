@@ -2,7 +2,7 @@
 
 ## Overview
 
-Traccar Manager using [Capacitor](https://github.com/ionic-team/capacitor).
+Forked traccar-web and added [Capacitor](https://github.com/ionic-team/capacitor).
 
 Uses native web requests and native web sockets.
 
