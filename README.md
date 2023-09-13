@@ -6,6 +6,8 @@ Traccar Manager using [Capacitor](https://github.com/ionic-team/capacitor).
 
 Uses native web requests and native web sockets.
 
+Check [here](https://capacitorjs.com/docs/getting-started/environment-setup) for requirements
+
 ## Start
 ```
 cd modern
