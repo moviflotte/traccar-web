@@ -5,7 +5,7 @@ export default function Init() {
   const oldFetch = window.fetch;
   window.fetch = async (url, options) => {
     if (typeof url === 'string' && url.startsWith('/')) {
-      url = `https://${process.env.REACT_APP_URL_NAME}${url}`;
+      url = `https://${import.meta.env.VITE_URL_NAME}${url}`;
       if (Capacitor.getPlatform() === 'ios') {
         try {
           const response = await CapacitorHttp.request({
