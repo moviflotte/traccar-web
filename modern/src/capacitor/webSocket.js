@@ -17,7 +17,7 @@ async function init() {
   const { value } = await Preferences.get({ key: 'cookie' });
   await CapacitorWebsocket.build({
     name: 'default',
-    url: `wss://${process.env.REACT_APP_URL_NAME}/api/socket`,
+    url: `wss://${import.meta.env.VITE_URL_NAME}/api/socket`,
     headers: { Cookie: value },
   });
   await CapacitorWebsocket.applyListeners({ name: 'default' });
