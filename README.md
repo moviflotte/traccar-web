@@ -2,18 +2,19 @@
 
 ## Overview
 
-Traccar Manager using [Capacitor](https://github.com/ionic-team/capacitor).
+Forked traccar-web and added [Capacitor](https://github.com/ionic-team/capacitor).
 
 Uses native web requests and native web sockets.
+
+Check [here](https://capacitorjs.com/docs/getting-started/environment-setup) for requirements
 
 ## Start
 ```
 cd modern
 npm install
-export REACT_APP_URL_NAME=YOUR_TRACCAR_SERVER_HOST && npm run build
+export VITE_URL_NAME=YOUR_TRACCAR_SERVER_HOST && npm run build
 npx cap add ios
 npx cap add android
-npx cap copy
 ```
 Xcode
 ```
