@@ -35,3 +35,10 @@ jobs:
       working-directory: modern
     - run: npm run build
       working-directory: modern
+      env:
+        VITE_URL_NAME: ${{ vars.MAPTILER_KEY }}
+    - name: Upload artifact
+      working-directory: modern
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: ./build
