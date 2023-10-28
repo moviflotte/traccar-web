@@ -6,6 +6,7 @@ on:
       - master
     paths:
       - modern/**
+      - .github/workflows/modern.yml
   pull_request:
     branches:
       - master
