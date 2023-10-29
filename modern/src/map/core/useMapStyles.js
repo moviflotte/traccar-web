@@ -67,7 +67,7 @@ export default () => {
         tiles: ['a', 'b', 'c'].map((i) => `https://${i}.tile.opentopomap.org/{z}/{x}/{y}.png`),
         maxZoom: 17,
       }),
-      available: true,
+      available: false,
     },
     {
       id: 'carto',
@@ -83,7 +83,7 @@ export default () => {
       id: 'googleRoad',
       title: t('mapGoogleRoad'),
       style: styleCustom({
-        tiles: [0, 1, 2, 3].map((i) => `https://mt${i}.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga`),
+        tiles: ['https://d831cxdfrpk69.cloudfront.net/?x={x}&y={y}&z={z}&type=roads'],
         maxZoom: 20,
         attribution: '© Google',
       }),
@@ -93,7 +93,7 @@ export default () => {
       id: 'googleSatellite',
       title: t('mapGoogleSatellite'),
       style: styleCustom({
-        tiles: [0, 1, 2, 3].map((i) => `https://mt${i}.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}&s=Ga`),
+        tiles: ['https://d831cxdfrpk69.cloudfront.net/?x={x}&y={y}&z={z}&type=satellite'],
         maxZoom: 20,
         attribution: '© Google',
       }),
@@ -107,7 +107,7 @@ export default () => {
         maxZoom: 20,
         attribution: '© Google',
       }),
-      available: true,
+      available: false,
     },
     {
       id: 'mapTilerBasic',
