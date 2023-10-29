@@ -4,7 +4,6 @@ import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/styles';
 import { map } from './core/MapView';
 import { formatTime, getStatusColor } from '../common/util/formatter';
-import { mapIconKey } from './core/preloadImages';
 import { findFonts } from './core/mapUtil';
 import { useAttributePreference, usePreference } from '../common/util/preferences';
 
@@ -43,7 +42,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
       deviceId: position.deviceId,
       name: device.name,
       fixTime: formatTime(position.fixTime, 'seconds', hours12),
-      category: mapIconKey(device.category),
+      category: device.category,
       color: showStatus ? position.attributes.color || getStatusColor(device.status) : 'neutral',
       rotation: position.course % 22.5,
       baseRotation: Math.floor(position.course / 22.5) * 22.5,
