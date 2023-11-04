@@ -1,6 +1,6 @@
 import { Capacitor, CapacitorHttp } from '@capacitor/core';
 import { Preferences } from '@capacitor/preferences';
-import * as Sentry from '@sentry/capacitor';
+import * as Sentry from '@sentry/react';
 
 function initSentry() {
   Sentry.init({
