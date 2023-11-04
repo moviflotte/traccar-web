@@ -22,7 +22,18 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
   const mapCluster = useAttributePreference('mapCluster', true);
   const hours12 = usePreference('twelveHourFormat');
   const directionType = useAttributePreference('mapDirection', 'selected');
-
+  function parseColor(input) {
+    if (input.substr(0, 1) === '#') {
+      const collen = (input.length - 1) / 3;
+      const fact = [17, 1, 0.062272][collen - 1];
+      return [
+        Math.round(parseInt(input.substr(1, collen), 16) * fact),
+        Math.round(parseInt(input.substr(1 + collen, collen), 16) * fact),
+        Math.round(parseInt(input.substr(1 + 2 * collen, collen), 16) * fact),
+      ];
+    }
+    return input.split('(')[1].split(')')[0].split(',').map((x) => +x);
+  }
   const createFeature = (devices, position, selectedPositionId) => {
     const device = devices[position.deviceId];
     let showDirection;
@@ -37,6 +48,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
         showDirection = selectedPositionId === position.id;
         break;
     }
+    const labelColor = parseColor(device.attributes.routeColor || '#000000');
     return {
       id: position.id,
       deviceId: position.deviceId,
@@ -48,6 +60,9 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
       baseRotation: Math.floor(position.course / 22.5) * 22.5,
       direction: showDirection,
       routeColor: device.attributes.routeColor,
+      labelColorR: labelColor[0],
+      labelColorG: labelColor[1],
+      labelColorB: labelColor[2],
     };
   };
 
@@ -134,7 +149,13 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
         },
         paint: {
           'text-halo-color': ['get', 'routeColor'],
-          'text-halo-width': 10,
+          'text-halo-width': 20,
+          'text-color': ['case',
+            ['<', ['+',
+              ['*', 0.299, ['get', 'labelColorR']],
+              ['*', 0.587, ['get', 'labelColorG']],
+              ['*', 0.114, ['get', 'labelColorB']],
+            ], 144], 'white', 'black'],
         },
       });
       map.on('mouseenter', source, onMouseEnter);
