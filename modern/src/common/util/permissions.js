@@ -8,7 +8,7 @@ export const useAdministrator = () => useSelector((state) => {
 export const useManager = () => useSelector((state) => {
   const admin = state.session.user.administrator;
   const manager = (state.session.user.userLimit || 0) !== 0;
-  return admin || manager;
+  return false;
 });
 
 export const useDeviceReadonly = () => useSelector((state) => {
@@ -17,7 +17,7 @@ export const useDeviceReadonly = () => useSelector((state) => {
   const userReadonly = state.session.user.readonly;
   const serverDeviceReadonly = state.session.server.deviceReadonly;
   const userDeviceReadonly = state.session.user.deviceReadonly;
-  return !admin && (serverReadonly || userReadonly || serverDeviceReadonly || userDeviceReadonly);
+  return !admin && (serverReadonly || userReadonly || serverDeviceReadonly || userDeviceReadonly || true);
 });
 
 export const useRestriction = (key) => useSelector((state) => {
