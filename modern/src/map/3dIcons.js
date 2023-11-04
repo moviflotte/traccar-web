@@ -18,5 +18,5 @@ const mapPalette = createPalette({
 });
 
 export default function getImageUrl(icon, color, rotation) {
-  return `${baseUrl}/${icon}.php?b=${mapPalette[color].main && mapPalette[color].main.replace('#', '')}&grados=${rotation}`;
+  return `${baseUrl}/${icon}.php?c=${mapPalette[color].main && mapPalette[color].main.replace('#', '')}&grados=${rotation}`;
 }
