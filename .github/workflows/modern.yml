@@ -40,15 +40,7 @@ jobs:
       working-directory: modern
       env:
         VITE_URL_NAME: ${{ vars.VITE_URL_NAME }}
-    - uses: sparkfabrik/android-build-action@v1.5.0
-      with:
-        project-path: modern/android
-        output-path: my-app.apk
-        ruby-version: "2.7.5"
-        bundler-version: "2.3.26"
-        fastlane-env: "debug"
-
-  deploy:
+  deploy_pages:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -58,19 +50,26 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-  build_android:
-    name: Build android
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: sparkfabrik/android-build-action@v1.5.0
-        with:
-          project-path: modern/android
-          output-path: my-app.apk
-          browserstack-upload: true
-          browserstack-username: ${{ secrets.BROWSERSTACK_USERNAME }}
-          browserstack-access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-          ruby-version: "2.7.5"
-          bundler-version: "2.3.26"
-          fastlane-env: "debug"
+  build_ios:
+    build:
+      runs-on: macos-latest
+      steps:
+        - uses: actions/checkout@v3
+        - uses: actions/setup-node@v3
+          with:
+            cache: npm
+            cache-dependency-path: modern/package-lock.json
+        - run: npm ci
+          working-directory: modern
+        - run: |
+            npm run build
+            npx cap add ios
+          working-directory: modern
+          env:
+            VITE_URL_NAME: ${{ vars.VITE_URL_NAME }}
+        - run: fastlane beta
+          working-directory: modern
+          env:
+            MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+
 
