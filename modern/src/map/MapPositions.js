@@ -121,7 +121,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
         },
         paint: {
           'text-halo-color': 'white',
-          'text-halo-width': 1,
+          'text-halo-width': 10,
         },
       });
       map.on('mouseenter', source, onMouseEnter);
