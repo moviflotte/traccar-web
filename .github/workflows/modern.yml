@@ -72,9 +72,10 @@ jobs:
           ls ${{ github.workspace }}
         shell: bash
         working-directory: modern
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CLOUD_AUTH }}'
       - run: fastlane beta
         working-directory: modern/ios/App
-        env:
-          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-
-
