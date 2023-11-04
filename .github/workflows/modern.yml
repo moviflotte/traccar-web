@@ -51,25 +51,24 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v2
   build_ios:
-    build:
-      runs-on: macos-latest
-      steps:
-        - uses: actions/checkout@v3
-        - uses: actions/setup-node@v3
-          with:
-            cache: npm
-            cache-dependency-path: modern/package-lock.json
-        - run: npm ci
-          working-directory: modern
-        - run: |
-            npm run build
-            npx cap add ios
-          working-directory: modern
-          env:
-            VITE_URL_NAME: ${{ vars.VITE_URL_NAME }}
-        - run: fastlane beta
-          working-directory: modern
-          env:
-            MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: npm
+          cache-dependency-path: modern/package-lock.json
+      - run: npm ci
+        working-directory: modern
+      - run: |
+          npm run build
+          npx cap add ios
+        working-directory: modern
+        env:
+          VITE_URL_NAME: ${{ vars.VITE_URL_NAME }}
+      - run: fastlane beta
+        working-directory: modern
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
 
 
