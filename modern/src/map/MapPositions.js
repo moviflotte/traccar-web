@@ -114,7 +114,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
           'icon-rotate': ['get', 'rotation'],
           'text-field': `{${titleField || 'name'}}`,
           'text-allow-overlap': true,
-          'text-anchor': 'bottom',
+          'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
           'text-offset': [0, -2 * iconScale],
           'text-font': findFonts(map),
           'text-size': 12,
