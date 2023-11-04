@@ -19,10 +19,8 @@ platform :ios do
   lane :beta do
     setup_ci if ENV['CI']
     match(type: 'appstore')
+    match(type: 'development')
     update_project_team
-    update_code_signing_settings(
-      profile_name: "match AppStore com.fleetmap.moviflotte"
-    )
     build_app()
     upload_to_testflight(skip_waiting_for_build_processing: true)
   end
