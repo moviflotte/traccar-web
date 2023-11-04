@@ -47,6 +47,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
       rotation: position.course % 22.5,
       baseRotation: Math.floor(position.course / 22.5) * 22.5,
       direction: showDirection,
+      routeColor: device.attributes.routeColor
     };
   };
 
@@ -132,7 +133,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
           'text-size': 12,
         },
         paint: {
-          'text-halo-color': 'white',
+          'text-halo-color': ['get', 'routeColor'],
           'text-halo-width': 10,
         },
       });

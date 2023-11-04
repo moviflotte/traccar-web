@@ -8,8 +8,8 @@ export default defineConfig(() => ({
   server: {
     port: 3000,
     proxy: {
-      '/api/socket': 'ws://172.31.80.100:8082',
-      '/api': 'http://172.31.80.100:8082',
+      '/api/socket': 'wss://www.m.moviflotte.com',
+      '/api': 'https://www.m.moviflotte.com',
     },
   },
   build: {
