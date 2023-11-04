@@ -5,9 +5,7 @@ export const useAdministrator = () => useSelector((state) => {
   return admin;
 });
 
-export const useManager = () => useSelector((state) => {  
-  return false;
-});
+export const useManager = () => useSelector(() =>  false);
 
 export const useDeviceReadonly = () => useSelector((state) => {
   const admin = state.session.user.administrator;
