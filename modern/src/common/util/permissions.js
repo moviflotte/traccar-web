@@ -5,9 +5,7 @@ export const useAdministrator = () => useSelector((state) => {
   return admin;
 });
 
-export const useManager = () => useSelector((state) => {
-  const admin = state.session.user.administrator;
-  const manager = (state.session.user.userLimit || 0) !== 0;
+export const useManager = () => useSelector((state) => {  
   return false;
 });
 
