@@ -112,6 +112,18 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
           'icon-size': iconScale,
           'icon-allow-overlap': true,
           'icon-rotate': ['get', 'rotation'],
+        },
+        paint: {
+          'text-halo-color': 'white',
+          'text-halo-width': 10,
+        },
+      });
+      map.addLayer({
+        id: `${source}label`,
+        type: 'symbol',
+        source,
+        filter: ['!has', 'point_count'],
+        layout: {
           'text-field': `{${titleField || 'name'}}`,
           'text-allow-overlap': false,
           'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
