@@ -1,3 +1,0 @@
-lane :beta do
-  build_app(scheme: "MyApp")
-end

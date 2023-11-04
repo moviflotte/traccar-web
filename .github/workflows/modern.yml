@@ -66,8 +66,14 @@ jobs:
         working-directory: modern
         env:
           VITE_URL_NAME: ${{ vars.VITE_URL_NAME }}
-      - run: fastlane beta
+      - run: |
+          cp Gemfile ./ios/App
+          cp -r fastlane ./ios/App
+          ls ${{ github.workspace }}
+        shell: bash
         working-directory: modern
+      - run: fastlane beta
+        working-directory: modern/ios/App
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
 
