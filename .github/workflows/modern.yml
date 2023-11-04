@@ -53,10 +53,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - run: cd modern
       - uses: sparkfabrik/android-build-action@v1.5.0
         with:
-          project-path: android
+          project-path: modern/android
           output-path: my-app.apk
           browserstack-upload: true
           browserstack-username: ${{ secrets.BROWSERSTACK_USERNAME }}
