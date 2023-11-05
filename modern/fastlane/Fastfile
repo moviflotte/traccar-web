@@ -29,5 +29,6 @@ platform :android do
   lane :beta do
     setup_ci if ENV['CI']
     build_android_app(task: "assemble")
+    upload_to_play_store(track: 'internal')
   end
 end
