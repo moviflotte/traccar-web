@@ -72,7 +72,13 @@ jobs:
           touch ./ios/App/gc_keys.json
           echo '${{ secrets.GOOGLE_CLOUD_AUTH }}' >> ./ios/App/gc_keys.json
         working-directory: modern
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+        with:
+          path: modern/package.json
       - run: fastlane beta
         working-directory: modern/ios/App
         env:
           APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APPSTORE_API_KEY }}
+          FL_BUILD_NUMBER_BUILD_NUMBER: ${{ steps.package-version.outputs.current-version}}
