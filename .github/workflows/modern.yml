@@ -81,4 +81,4 @@ jobs:
         working-directory: modern/ios/App
         env:
           APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APPSTORE_API_KEY }}
-          FL_BUILD_NUMBER_BUILD_NUMBER: ${{ steps.package-version.outputs.current-version}}
+          FL_BUILD_NUMBER_BUILD_NUMBER: ${{ steps.package-version.outputs.current-version }}
