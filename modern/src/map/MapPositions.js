@@ -129,10 +129,6 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
           'icon-allow-overlap': true,
           'icon-rotate': ['get', 'rotation'],
         },
-        paint: {
-          'text-halo-color': 'white',
-          'text-halo-width': 10,
-        },
       });
       map.addLayer({
         id: `${source}label`,
@@ -149,7 +145,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
         },
         paint: {
           'text-halo-color': ['get', 'routeColor'],
-          'text-halo-width': 20,
+          'text-halo-width': 200,
           'text-color': ['case',
             ['<', ['+',
               ['*', 0.299, ['get', 'labelColorR']],
