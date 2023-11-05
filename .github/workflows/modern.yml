@@ -71,9 +71,8 @@ jobs:
           cp -r fastlane ./ios/App
           touch ./ios/App/gc_keys.json
           echo '${{ secrets.GOOGLE_CLOUD_AUTH }}' >> ./ios/App/gc_keys.json
-        env:
-          APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APPSTORE_API_KEY }}
-        shell: bash
         working-directory: modern
       - run: fastlane beta
         working-directory: modern/ios/App
+        env:
+          APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APPSTORE_API_KEY }}
