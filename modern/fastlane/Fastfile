@@ -22,6 +22,7 @@ platform :ios do
     match(type: 'development')
     update_project_team
     update_code_signing_settings(
+          code_sign_identity: "iPhone Distribution",
           profile_name: "match AppStore com.fleetmap.moviflotte"
         )
     build_app()
