@@ -131,7 +131,7 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
         },
       });
       map.addLayer({
-        id: `${source}label`,
+        id: `${source}-label`,
         type: 'symbol',
         source,
         filter: ['!has', 'point_count'],
@@ -140,18 +140,19 @@ const MapPositions = ({ positions, onClick, showStatus, selectedPosition, titleF
           'text-allow-overlap': false,
           'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
           'text-offset': [0, -2 * iconScale],
-          'text-font': findFonts(map),
-          'text-size': 12,
+          'text-font': ['Roboto Bold'],
+          'text-size': 13,
         },
         paint: {
-          'text-halo-color': ['get', 'routeColor'],
-          'text-halo-width': 200,
-          'text-color': ['case',
+          'text-halo-color': ['case', ['has', 'routeColor'], ['get', 'routeColor'], 'white'],
+          'text-halo-width': 2,
+          'text-halo-blur': 1,
+          'text-color': ['case', ['has', 'routeColor'], ['case',
             ['<', ['+',
               ['*', 0.299, ['get', 'labelColorR']],
               ['*', 0.587, ['get', 'labelColorG']],
               ['*', 0.114, ['get', 'labelColorB']],
-            ], 144], 'white', 'black'],
+            ], 144], 'white', 'black'], 'black'],
         },
       });
       map.on('mouseenter', source, onMouseEnter);
