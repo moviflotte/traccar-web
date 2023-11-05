@@ -16,6 +16,28 @@ permissions:
   pages: write
   id-token: write
 jobs:
+  build_android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: npm
+          cache-dependency-path: modern/package-lock.json
+      - run: npm ci
+        working-directory: modern
+      - run: |
+          npm run build
+          npx cap add android
+        working-directory: modern
+        env:
+          VITE_URL_NAME: ${{ vars.VITE_URL_NAME }}
+      - run: |
+          cp Gemfile android
+          cp -r fastlane ./android
+        working-directory: modern
+      - run: fastlane android beta
+        working-directory: modern/android
   build_ios:
     runs-on: macos-latest
     steps:
